@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="donation.html">Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="partner.html">Our Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="education.html">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reward.html">Reward</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main class="donation-page py-5" style="min-height: 85vh;">
+    <div class="container h-100">
+        <div class="row h-100">
+            
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <div class="map-wrapper position-relative shadow-soft h-100">                                
+                    <div class="position-absolute top-0 start-0 p-3 w-100 d-flex gap-2 align-items-start" style="z-index: 1000; pointer-events: none;">
+                        
+                        <div class="bg-white shadow-sm rounded-pill d-flex align-items-center px-3 py-2 flex-grow-1" style="pointer-events: auto; max-width: 300px;">
+                            <i class="bi bi-search text-muted me-2"></i>
+                            <input type="text" id="searchBankInput" class="border-0 w-100" style="outline: none;" placeholder="Cari bank sampah...">
+                        </div>
+
+                        <button id="findMeBtn" class="btn btn-light shadow-sm fw-bold text-green-primary rounded-pill px-3 py-2" style="pointer-events: auto; white-space: nowrap;">
+                            📍 Lokasi Saya
+                        </button>
+                    </div>        
+                    <div id="map" style="height: 500px; width: 100%; border-radius: 15px;"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 ps-lg-5">
+                
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="fw-bold m-0 text-green-primary">Donation Form</h5>
+                    <a href="history.html" class="btn btn-outline-success btn-sm rounded-pill px-3">
+                        <i class="bi bi-clock-history me-1"></i> History
+                    </a>
+                </div>
+                
+                <div class="bank-info-card mb-3 shadow-soft border-1 p-3">
+                    <h5 class="fw-bold text-green-primary mb-1" id="bankName">Pilih Lokasi di Peta</h5>
+                    <p class="text-muted small mb-0" id="bankContact">Klik ikon hijau di peta untuk lihat detail</p>
+                    <p class="text-success fw-medium mb-0 small" id="bankAddress">-</p>
+                </div>
+                    
+                <form id="donationForm">
+                    
+                    <div class="mb-3">
+                        <label for="pickupAddress" class="form-label fw-bold text-green-primary small">Pick-up Address</label>
+                        <input type="text" class="form-control custom-input" id="pickupAddress" placeholder="Alamat lengkap RT/RW" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="trashTypeInput" class="form-label fw-bold text-green-primary small">Type of Trash</label>
+                            <select class="form-select custom-input" id="trashTypeInput">
+                                <option value="Paper" selected>Paper</option>
+                                <option value="Plastic">Plastic</option>
+                                <option value="Metal">Metal</option>
+                                <option value="Glass">Glass</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="totalAmount" class="form-label fw-bold text-green-primary small">Total Amount</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control custom-input" id="totalAmount" min="1" placeholder="0" required>
+                                <span class="input-group-text fw-bold text-success bg-white" style="border: 1px solid var(--green-primary); border-left: 0; border-radius: 0 8px 8px 0;">Kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="notes" class="form-label fw-bold text-green-primary small">Notes</label>
+                        <textarea class="form-control custom-input" id="notes" rows="2" placeholder="Catatan untuk kurir..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-donate w-100 py-2 fw-bold rounded-3 shadow-sm">
+                        Donate Now
+                    </button>
+
+                </form>
+
+            </div> 
+        </div> 
+    </div> 
+</main>
+<footer class="pt-5 pb-3 mt-2">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Assets/Icon GreenUp.png" alt="Logo" width="40" class="me-2" style="filter: brightness(0) invert(1);"> 
+                        <h4 class="fw-bold mb-0">GreenUp</h4>
+                    </div>
+                    <p class="small text-white-50">
+                        Platform digital untuk pengelolaan sampah yang lebih baik. Hubungkan dirimu dengan bank sampah terdekat dan buat perubahan nyata hari ini.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Menu</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="donation.html">Donation</a></li>
+                        <li class="mb-2"><a href="#">Our Partner</a></li>
+                        <li class="mb-2"><a href="#">Education</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms & Condition</a></li>
+                        <li class="mb-2"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Kantor Kami</h5>
+                    <p class="small text-white-50 mb-2">
+                        Jl. Dewberry, Kec. Heartlands<br>
+                        New Hanover, Montana 13220
+                    </p>
+                    <p class="small text-white-50 mb-3">
+                        Email: hello@greenup.id<br>
+                        Phone: +62 812 3456 7890
+                    </p>
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-twitter-x fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2024 GreenUp Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed with 💚 in Tangerang bagian Montana</p>
+                </div>
+            </div>
+        </div>
+</footer>
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+<script src="script.js"></script>
+</body>
+</html>

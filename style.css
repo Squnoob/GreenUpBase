@@ -1,0 +1,1008 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Variabel Warna */
+:root {
+    --green-primary: #31572c; /* Hijau Utama */
+    --green-secondary: #4f772d; /* Hijau Muda untuk background navbar */
+    --text-hijau: #90A955;
+    --text-color: #333;
+    --grey-illustration: #C5C5C5;
+    --dark-green-illustration: #598059;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--greenup-darktext);
+    overflow-x: hidden; 
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =======================
+   STYLING NAVBAR
+   ========================= */
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+}
+
+/* Logo Text (GreenUp) */
+.logo-text {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--green-secondary);
+}
+
+.logo-img {
+    height: 5em; /* Atur tinggi gambar logo */
+    width: auto; /* Biarkan lebar menyesuaikan aspek rasio */
+    margin-right: 8px; /* Jarak antara gambar dan teks (juga dikontrol oleh class Bootstrap me-2) */
+
+}
+
+/* Tautan Navigasi (Tengah) */
+.navbar-nav .nav-link {
+    color: var(--green-secondary);
+    font-weight: 800;
+    margin: 0 15px; /* Jarak antar tautan */
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--green-primary);
+    opacity: 0.8;
+}
+
+/* Indikator Tautan Aktif (Garis Bawah Hijau) */
+.navbar-nav .nav-link.active {
+    color: var(--green-primary);
+    font-weight: 700;
+}
+
+.navbar-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Posisi di bawah teks */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--green-primary);
+    border-radius: 2px;
+}
+
+/* Ikon Profil (Kanan) */
+.profile-icon {
+    font-size: 1.5rem;
+    color: var(--green-primary);
+}
+
+/* Toggler untuk mode Mobile */
+.navbar-toggler {
+    border-color: var(--green-primary);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2889, 128, 89, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+
+
+
+
+
+/* =======================
+   LOGIN & SIGNUP PAGE
+   ========================= */
+
+/* Pastikan tinggi halaman full layar */
+.login-section {
+    height: 100vh;
+    overflow-x: hidden;
+    /* Kalau konten form panjang (di HP), biar bisa discroll */
+    overflow-y: auto; 
+}
+
+.login-bg-image {
+    /* Layer 1: Warna Hijau Tua Transparan (Overlay)
+       Layer 2: Gambar Background
+    */
+    background: linear-gradient(to bottom, rgba(23, 54, 23, 0.7), rgba(23, 54, 23, 0.6)), 
+                url('https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?q=80&w=1000&auto=format&fit=crop');
+    
+    background-size: cover;      
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+
+.login-bg-image h1, .login-bg-image p {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+
+/* Form Input Padding */
+.login-form-wrapper .custom-input {
+    padding: 12px; /* Biar inputnya agak gendut enak diklik */
+}
+
+
+
+
+
+
+
+
+
+
+/* =======================
+   PROFILE PAGE STYLES
+   ========================= */
+
+/* Avatar Bulat Besar */
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* Placeholder background */
+    background-color: #e0e0e0; 
+}
+
+
+
+.position-relative {
+    position: relative;
+}
+
+/* Tombol Kamera Bulat Kecil */
+.btn-upload-cam {
+    position: absolute;
+    bottom: 0;
+    right: 25px; /* Sesuaikan biar pas di pojok kanan bawah avatar */
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--green-primary);
+    transition: all 0.2s;
+}
+
+.btn-upload-cam:hover {
+    background-color: var(--green-primary);
+    color: white;
+}
+
+/* Pastikan gambar avatar mengisi penuh lingkaran */
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Status Badge (Active) */
+.badge-status-active {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--greenup-primary);
+}
+
+.dot-green {
+    width: 10px;
+    height: 10px;
+    background-color: #78a55a; /* Warna hijau 'Active' di gambar */
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Card Profile */
+.profile-card {
+    border: 3px solid var(--green-primary);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+/* --- CSS DONUT CHART (Tanpa JS) --- */
+.donut-chart {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* Trik Gradient: 50% Hijau Tua, 50% Abu-abu */
+    background: conic-gradient(
+        var(--green-primary) 0% 50%, 
+        #e0e0e0 50% 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Lubang tengah donat */
+.donut-center {
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Input yang terlihat seperti teks biasa (Read-only) */
+.form-control-plaintext {
+    padding-left: 0;
+    padding-top: 0;
+}
+
+
+
+
+
+
+
+/* =======================
+   INDEX PAGE
+   ========================= */
+.hero-section {
+    background-color: #fdfdfd; 
+    min-height: auto; 
+}
+
+.hero-responsive-text {
+    position: relative; 
+    width: 100%;
+    padding: 20px;
+}
+
+.hero-text h1 {
+    color:var(--green-primary);
+    position: relative;
+    z-index:10 ;
+}
+
+.hero-text {
+    position: relative; 
+    z-index: 10;
+}
+
+/* Tombol Kustom (Diperbarui) */
+.btn-custom {
+    /* Menggunakan warna hijau muda sesuai gambar baru */
+    background-color: var(--green-primary); 
+    color: white;
+    font-weight: 700; /* Dibuat tebal agar lebih jelas */
+    padding: 0.75rem 2rem;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #79a838; /* Warna hijau muda sedikit lebih gelap */
+    color: white;
+}
+
+.text-mobile-justify {
+    text-align: justify;
+}
+
+.blog-card {
+    /* Warna background kartu agak krem/hijau sangat muda sesuai gambar */
+    background-color: #f0f9ed; 
+    border: 1px solid var(--dark-green-illustration);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px); /* Efek naik pas dihover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.blog-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Tombol Read More */
+.blog-card .btn-custom {
+    background-color: #4a6340; /* Hijau Army Gelap */
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 0.8rem;
+}
+
+
+@media (min-width: 992px) {
+    .hero-section {
+        min-height: 80vh; /* Balikin tinggi full layar */
+    }
+
+    .hero-responsive-text {
+        position: absolute; /* Balikin 'Perfect' layout lu */
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 50%; /* Setengah layar kanan */
+        z-index: 10;
+    }
+
+    .text-mobile-justify {
+        text-align: left;
+    }
+}
+
+
+
+
+/* =======================
+   ABOUT US PAGE
+   ========================= */
+
+/* 1. Hero Banner (Gambar + Overlay Hijau) */
+.about-hero {
+    /* Trik Gradient Hijau Transparan di atas gambar */
+    background: linear-gradient(rgba(49, 87, 44, 0.8), rgba(49, 87, 44, 0.7)), 
+                url('https://banksampahinduksurabaya.id/wp-content/uploads/2023/02/gambar-D-bank-sampah-surabaya.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    height: 250px; /* Tinggi banner */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2. Purpose Card (Kartu Putih) */
+.purpose-card {
+    background: var(--green-secondary);
+    border: 1px solid #f0f0f0;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.purpose-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--green-primary);
+}
+
+/* 3. Connect Section (Collage) */
+.connect-img-lg {
+    height: 400px;
+    object-fit: cover;
+}
+
+.connect-img-sm {
+    height: 192px; /* Setengah dari yg besar minus gap */
+    object-fit: cover;
+}
+
+/* Teks "Connect With Us" Melayang di Tengah */
+.connect-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Trik biar pas tengah banget */
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+}
+
+.text-shadow {
+    text-shadow: 0 8px 15px rgba(0,0,0,1); /* Bayangan teks biar kebaca */
+    font-size: 4rem;
+}
+
+.text-stroke {
+    -webkit-text-stroke: .2rem white;
+    font-size: 4rem;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+
+/* Responsif buat HP */
+@media (max-width: 768px) {
+    .about-hero { height: 180px; }
+    .connect-img-lg, .connect-img-sm { height: 200px; }
+    .text-shadow { font-size: 2rem; }
+}
+
+
+
+
+
+
+
+
+
+/* =========================================
+   PAGE: DONATION (Form & Map Style)
+   ========================================= */
+
+/* --- Styling Wrapper Peta --- */
+.map-wrapper {
+    border-radius: 15px; /* Sudut membulat seperti di gambar */
+    overflow: hidden;    /* Memastikan sudut iframe ikut terpotong */
+    height: 100%;
+    min-height: 500px;   /* Tinggi minimum agar peta terlihat jelas */
+}
+
+select.custom-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    cursor: pointer;
+}
+
+.map-search-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Di Kiri Atas */
+    z-index: 1000;
+    width: 220px;
+}
+
+.map-search-overlay input {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid var(--dark-green-illustration);
+    padding-left: 15px;
+}
+
+.custom-div-icon {
+    background: transparent;
+    border: none;
+}
+
+.marker-label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px; /* Lebar area label */
+    transform: translateX(-35px); /* Geser dikit biar pas tengah */
+}
+
+.marker-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 3px 2px rgba(0,0,0,0.3));
+    transition: transform 0.2s;
+}
+
+.marker-text {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--green-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    white-space: nowrap;      /* Biar teks gak turun baris */
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* Kalau kepanjangan jadi ... */
+}
+
+.marker-label-container:hover .marker-img {
+    transform: scale(1.2);
+}
+.marker-label-container:hover .marker-text {
+    background-color: var(--green-primary);
+    color: white;
+}
+
+/* --- Info Box Bank Sampah --- */
+.bank-info-card {
+    border: 3px solid var(--green-primary);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+
+}
+
+/* --- Styling Form Input --- */
+.text-green-primary {
+    color: var(--greenup-primary); /* Menggunakan variabel warna hijau tua Anda */
+}
+
+.custom-input {
+    background-color: #fdfdfd;
+    border: 1px solid var(--green-primary);
+    border-radius: 8px;
+    padding: 12px 15px; /* Padding lebih lega */
+}
+
+.custom-input:focus {
+    border-color: var(--greenup-secondary);
+    box-shadow: 0 0 0 4px rgba(140, 198, 63, 0.1); /* Efek glow hijau muda saat diklik */
+}
+
+/* Trik agar border kanan input hilang saat nempel sama "Kg" */
+.input-group .custom-input {
+    border-right: none; 
+}
+.input-group-text {
+    border-left: none;
+    border-radius: 0 8px 8px 0; /* Sudut kanan membulat */
+    background-color: #fff !important;
+}
+
+
+/* --- Tombol Donate Besar --- */
+.btn-donate {
+    background-color: #557c43; /* Warna hijau 'army' sesuai gambar tombol */
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-donate:hover {
+    background-color: #446336; /* Lebih gelap saat hover */
+    color: white;
+    transform: translateY(-2px); /* Efek naik dikit */
+}
+
+/* 1. Search Bar (Bar Panjang di Kiri) */
+.map-search-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Di atas peta */
+    width: 280px;  /* Lebar fix */
+    background: white;
+    border-radius: 50px; /* Lonjong (Pill) */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 2px;
+}
+
+.map-search-box .form-control {
+    font-size: 0.9rem;
+    padding-left: 10px; /* Jarak teks dari ikon search */
+}
+
+/* 2. Tombol Lokasi (Bulat di Kanan) */
+.btn-location {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    background: rgb(198, 218, 179);
+    border: none;
+    border-radius: 50%; /* Bulat sempurna */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-location:hover {
+    transform: scale(1.1);
+    background-color: #f8faf8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================================ */
+/* TRACKING PROGRESS PENJEMPUTAN */
+/* ============================================================ */
+
+/* Progress Bar Container */
+.progress-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 50px auto;
+    z-index: 1;
+}
+
+/* Garis Belakang (Abu-abu) */
+.progress-track::before {
+    content: '';
+    position: absolute;
+    top: 30px; /* Setengah tinggi lingkaran */
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #e9ecef;
+    z-index: -1;
+}
+
+/* Garis Hijau (Progress) */
+.progress-fill {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    height: 6px;
+    background: var(--green-primary); /* Hijau Kita */
+    width: 0%; /* Nanti diatur JS */
+    transition: width 0.5s ease;
+    z-index: -1;
+}
+
+/* Lingkaran Step */
+.step {
+    text-align: center;
+    background: white; /* Biar garis belakang ketutup */
+    width: 150px; /* Area lebar buat teks */
+}
+
+.step-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #e9ecef; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    color: #adb5bd;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative; 
+    z-index: 2; 
+    border: 4px solid #fff; 
+}
+
+/* Status Aktif (Sedang terjadi) */
+.step.active .step-circle {
+    background-color: #8cc63f; /* Background jadi Hijau */
+    color: #fff;               /* Ikon baru berubah jadi Putih disini */
+    box-shadow: 0 0 0 3px rgba(140, 198, 63, 0.2); 
+}
+
+/* Status Selesai (Sudah lewat) */
+.step.completed .step-circle {
+    background-color: #5a8f4c; /* Background jadi Hijau Tua */
+    color: #fff;               /* Ikon Putih */
+}
+
+.step-label {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.step.active .step-label, 
+.step.completed .step-label {
+    color: var(--greenup-darktext);
+}
+
+/* Kotak Detail */
+.detail-box {
+    border: 1px solid var(--dark-green-illustration);
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+}
+
+
+
+
+/* ============================================= */
+/* HISTORY PAGE */
+/* ============================================= */
+/* CSS KHUSUS TABEL */
+.history-card {
+    border: 1px solid var(--green-primary);
+    border-radius: 10px;
+    overflow: hidden; /* Biar sudut tabel ikut bulat */
+    
+}
+
+.table-custom thead th {
+    background-color: #92ac69; /* Warna HijauHeader Table */
+    color: white;
+}
+
+.table-custom th, .table-custom td {
+    padding: 15px;
+    vertical-align: middle;
+    color: #557c43;
+}
+
+/* Badge Status */
+.badge-status {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.status-progress {
+    background-color: #fceea6;
+    color: #856404;
+}
+
+.status-done {
+    background-color: #557c43;
+    color: white;
+}
+
+
+
+
+        
+
+/* =======================
+   EDUCATION PAGE (Card Style)
+   ========================= */
+
+/* Style Kartu Artikel */
+.article-card {
+    background-color: #ffffff;
+    border: 2px solid #d4d4d4; 
+    border-radius: 16px;       
+    padding: 25px;             
+    margin-bottom: 30px;       
+    transition: all 0.3s ease;  
+    position: relative;        
+}
+
+/* Efek Pas Kursor Lewat (Hover) */
+.article-card:hover {
+    border-color: var(--green-primary); /* Border berubah jadi Hijau */
+    box-shadow: 0 10px 25px rgba(49, 87, 44, 0.1); /* Bayangan hijau tipis */
+    transform: translateY(-5px); /* Kartu naik dikit */
+}
+
+article a {
+    color: var(--green-primary);
+    font-weight: 700;
+}
+
+/* Judul Artikel */
+.article-title  {
+    font-weight: 700;
+}
+
+.article-title:hover {
+    color: var(--green-secondary);
+}
+
+/* Gambar Artikel */
+.article-img {
+    width: 100%;        /* Full width container kolom */
+    height: 160px;      /* Tinggi tetap */
+    object-fit: cover;  /* Gambar rapi */
+    border-radius: 12px;
+}
+
+/* Responsif di HP */
+@media (max-width: 768px) {
+    .article-img {
+        height: 200px; /* Di HP gambarnya agak tinggi dikit */
+        margin-bottom: 15px;
+    }
+}
+
+
+
+
+
+
+
+/* =======================
+   PARTNER PAGE
+   ========================= */
+
+
+.partner-hero {
+
+    background: linear-gradient(rgba(89, 143, 76, 0.85), rgba(89, 143, 76, 0.85)), 
+                url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop');
+    
+    background-size: cover;      
+    background-position: center; 
+    height: 10em;               
+    border-radius: 20px;         
+    display: flex;               
+    align-items: center;         
+    justify-content: center;     
+    position: relative;
+}
+
+/* 2. STATS BOX (Kotak 30+) */
+.stats-box {
+    /* border: 4px solid var(--green-primary); Garis kotak hijau tebal */
+    padding: 20px 40px;      /* Jarak dalam kotak */
+    /* border-radius: 10px;      Sudut sedikit melengkung */
+    background-color: white;
+}
+
+
+
+/* 3. GAMBAR PARTNER (KOTAK 3 DI BAWAH) */
+.partner-img {
+    width: 100%;        /* Lebar ngikutin kolom */
+    height: 220px;      /* Tinggi tetap biar rapi */
+    object-fit: cover;  /* Gambar tidak gepeng */
+    border-radius: 15px; /* Sudut melengkung */
+    transition: transform 0.3s ease;
+}
+
+.partner-card:hover .partner-img {
+    transform: scale(1.02); /* Efek zoom dikit pas dihover */
+}
+
+
+
+
+
+
+
+/* =======================
+   REWARD PAGE 
+   ========================= */
+
+.reward-card, .ticket-card {
+    background-color: #f4f9f4; 
+    color: var(--dark-green-illustration);
+    border: 1px solid var(--green-secondary);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reward-card:hover, .ticket-card:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(49, 87, 44, 0.15) !important;
+    border-color: var(--green-primary);
+    z-index: 10;
+}
+
+.reward-img-wrapper img {
+    object-fit: contain;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.reward-card:hover .reward-img-wrapper img {
+     transform: scale(1.02);
+}
+
+.btn-outline-custom {
+    background-color: white;
+    color: #555; 
+    border: 2px solid #555; 
+    transition: all 0.3s;
+}
+
+.btn-outline-custom:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #333;
+}
+
+.btn-outline-custom {
+    color: var(--green-primary);
+    border: 2px solid var(--green-primary);
+}
+.btn-outline-custom:hover {
+    background-color: var(--green-primary);
+    color: white;
+} 
+
+
+.ticket-divider {
+    position: relative;
+    height: 1px;
+    border-top: 2px dashed #ccc;
+    width: 100%;
+    margin: 0;
+}
+
+.ticket-divider::before, 
+.ticket-divider::after {
+    content: '';
+    position: absolute;
+    top: -10px; 
+    width: 20px;
+    height: 20px;
+    background-color: #fff; 
+    border-radius: 50%;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); 
+}
+
+.ticket-divider::before {
+    left: -12px;
+}
+
+.ticket-divider::after {
+    right: -12px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =======================
+   FOOTER STYLES
+   ========================= */
+
+footer {
+    background-color: var(--green-primary); /* Hijau Brand Kita */
+    color: white;
+    margin-top: auto; /* Trik biar footer selalu di bawah kalau konten dikit */
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8); /* Putih agak transparan */
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+footer a:hover {
+    color: #fff; /* Putih terang pas dihover */
+    text-decoration: underline;
+}
+
+/* Garis pemisah copyright */
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.1); 
+}
+
+/* Ikon sosmed bulat (opsional) */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.social-icon:hover {
+    background: white;
+    color: var(--greenup-primary);
+}

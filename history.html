@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation History - GreenUp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="about.html">About Us</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="donation.html">Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="partner.html">Our Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="education.html">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reward.html">Reward</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5">
+        <div class="container" >
+            <h2 class="fw-bold text-green-primary mb-4" style="color: var(--green-primary);">Donations History</h2>
+
+            <div class="history-card shadow-soft" style="background-color: var(--green-secondary);">
+                <table class="table table-custom mb-0">
+                    <thead >
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Waste Bank Name</th>
+                            <th scope="col">Type of Trash</th>
+                            <th scope="col" class="text-center">Total Amount</th>
+                            <th scope="col" class="text-end">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- <tr>
+                            <td>05-08-2025</td>
+                            <td>Trash Banker</td>
+                            <td>Can</td>
+                            <td class="text-center">10 Kg</td>
+                            <td class="text-end">
+                                <span class="badge badge-status status-done">Done</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>20-04-2025</td>
+                            <td>Bank Sampah 45</td>
+                            <td>Plastic</td>
+                            <td class="text-center">20 Kg</td>
+                            <td class="text-end">
+                                <span class="badge badge-status status-done">Done</span>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                
+                <div style="height: 30vh; background-color: white;"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

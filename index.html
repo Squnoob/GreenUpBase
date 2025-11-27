@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="donation.html">Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="partner.html">Our Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="education.html">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reward.html">Reward</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main>
+<section class="hero-section position-relative" style="overflow: hidden;">
+        <div class="row g-0 align-items-center position-relative">
+
+            <div class="col-lg-7 d-none d-lg-block" style="margin-top: 4em;">
+                <img src="Assets/GreenUp Trace.png" class="img-fluid" alt="Ilustrasi" style="transform: rotate(-8deg) scale(1.5);">
+            </div>
+
+            <div class="hero-responsive-text d-flex flex-column justify-content-center justify-content-lg-start mt-lg-3 pt-lg-5 py-5 pe-lg-5 ps-lg-3">
+                <h1 class="display-5 fw-bold mb-3 text-center text-lg-start" style="color: var(--green-secondary);"><span style="color: var(--green-primary);">Langkah Kecil untuk</span> Dampak Besar!</h1>
+                <p class="lead mb-4 text-mobile-justify">
+                    Website donasi sampah ini dirancang sebagai platform yang menghubungkan masyarakat dengan bank sampah terdekat serta menjalin kolaborasi bersama perusahaan daur ulang. Melalui penyediaan informasi lokasi, layanan penjemputan sampah, hingga dukungan promosi bank sampah mitra, platform ini menjadi jatan nyata untuk mewujudkan pengelolaan sampah yang lebih terintegrasi.
+                </p>
+                <a href="donation.html" class="btn btn-custom btn-lg rounded-pill w-auto  justify-content-center justify-content-lg-start">
+                    Ayo donasikan sampahmu!
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="container position-relative z-2 mt-1 mt-lg-1 mb-4">
+        <div class="bg-white rounded-4 shadow-lg p-4 border-bottom border-4 border-success">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                    <h2 class="fw-bold text-green-primary m-0">1.2 Ton</h2>
+                    <p class="text-muted small m-0">Sampah Didaur Ulang</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                    <h2 class="fw-bold text-green-primary m-0">500+</h2>
+                    <p class="text-muted small m-0">User Bergabung</p>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="fw-bold text-green-primary m-0">Rp 50jt</h2>
+                    <p class="text-muted small m-0">Reward Disalurkan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="partner-section py-5">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                
+                <div class="col-md-5 mb-4 mb-md-0 text-center text-md-start">
+                    <h2 class="fw-bold mb-0 display-4" style="color: var(--green-primary);">We’re<br>Collaborating<br>With</h2>
+                    <div class="d-flex align-items-start justify-content-center justify-content-md-start" style="color: var(--green-secondary);">
+                        <h1 class="display-1 fw-bold  mb-0">30</h1>
+                        <span class="fs-1 fw-bold  mt-2">+</span>
+                    </div>
+                    <h3 class="text-green-secondary-dark fw-bold">Partners</h3>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="position-relative">
+                        <img src="https://images.squarespace-cdn.com/content/v1/63bc96682c96d660ef51ff76/7c9c3c70-aab4-4d8d-8fd2-dcb95cb7318a/B%2BB_EF_WNM_About_022123_1.jpg" 
+                             alt="Bank Sampah Activity" 
+                             class="img-fluid rounded-4 shadow w-100" 
+                             style="height: 350px; object-fit: cover;">
+                        
+                        <h5 class="text-center fw-bold mt-3 display-6" style="color: var(--green-primary);">Waste No More</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="blog-section py-5 bg-light-green">
+        <div class="container">
+            
+            <div class="text-center mb-5">
+                <h2 class="fw-bold display-6" style="color: var(--green-primary);">Our Latest News & Blog</h2>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=400&auto=format&fit=crop" class="card-img-top p-3 rounded-4" alt="Recycle">
+                        <div class="card-body">
+                            <p class="text-muted small mb-1">Waste4Change, Edukasi</p>
+                            <h5 class="card-title fw-bold">Mengenal 3R (Reduce, Reuse, Recycle) Menurut Para Ahli!</h5>
+                            <p class="card-text small text-secondary">Konsep 3R adalah urutan langkah untuk mengelola sampah dengan bijak...</p>
+                            <a href="education.html" class="btn btn-sm btn-custom mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://th.bing.com/th/id/OIP.bSEp8TGYHVMWCZc2KCcOkAHaEK?w=275&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" class="card-img-top p-3 rounded-4" alt="Reuse">
+                        <div class="card-body">
+                            <p class="text-muted small mb-1">Kompas.com - Tips</p>
+                            <h5 class="card-title fw-bold">Cara Membuat Pupuk Kompos dari Sampah Dapur</h5>
+                            <p class="card-text small text-secondary">Jangan buang sisa sayuranmu! Limbah organik rumah tangga bisa disulap...</p>
+                            <a href="education.html" class="btn btn-sm btn-custom mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://th.bing.com/th/id/OIP.6PSVelw27NZGzBGvZtZIVgHaFd?w=238&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" class="card-img-top p-3 rounded-4" alt="Dampak Sampah">
+                        <div class="card-body">
+                            <p class="text-muted small mb-1">SIPSN Menlhk</p>
+                            <h5 class="card-title fw-bold">Mengenal Sistem Bank Sampah di Indonesia</h5>
+                            <p class="card-text small text-secondary">Bank Sampah adalah strategi untuk membangun kepedulian masyarakat agar dapat 'berkawan'...</p>
+                            <a href="education.html" class="btn btn-sm btn-custom mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+
+<footer class="pt-5 pb-3 mt-2">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Assets/Icon GreenUp.png" alt="Logo" width="40" class="me-2" style="filter: brightness(0) invert(1);"> 
+                        <h4 class="fw-bold mb-0">GreenUp</h4>
+                    </div>
+                    <p class="small text-white-50">
+                        Platform digital untuk pengelolaan sampah yang lebih baik. Hubungkan dirimu dengan bank sampah terdekat dan buat perubahan nyata hari ini.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Menu</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="donation.html">Donation</a></li>
+                        <li class="mb-2"><a href="#">Our Partner</a></li>
+                        <li class="mb-2"><a href="#">Education</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms & Condition</a></li>
+                        <li class="mb-2"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Kantor Kami</h5>
+                    <p class="small text-white-50 mb-2">
+                        Jl. Dewberry, Kec. Heartlands<br>
+                        New Hanover, Montana 13220
+                    </p>
+                    <p class="small text-white-50 mb-3">
+                        Email: hello@greenup.id<br>
+                        Phone: +62 812 3456 7890
+                    </p>
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-twitter-x fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2024 GreenUp Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed with 💚 in Tangerang bagian Montana</p>
+                </div>
+            </div>
+        </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

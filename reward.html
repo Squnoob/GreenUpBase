@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward - GreenUp</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="donation.html">Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="partner.html">Our Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="education.html">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="reward.html">Reward</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5">
+        <div class="container" style="color: var(--green-primary);">
+            
+            <div class="mb-3">
+                <img src="Assets/claim your reward banner.gif" alt="Claim Reward" class="img-fluid w-100 rounded-5 shadow-sm">
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between border-bottom pb-4 mb-3">
+                <div class="d-flex align-items-center">
+                    <h2 class="fw-bold me-3 mb-0">Your Poin</h2>
+                    <h2 class="fw-bold mb-0 display-5" style="color: var(--green-secondary);" id="rewardPagePoints">0</h2>
+                </div>
+                </div>
+
+            <div class="mb-5">
+                <h3 class="fw-bold text-green-primary mb-4">Reward</h3>
+                
+                <div class="row">
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="reward-card shadow-sm p-4 h-100 d-flex align-items-center justify-content-between">
+                            <div class="reward-text">
+                                <h4 class="fw-bold mb-2">Limited Special<br>Tumbler</h4>
+                                <p class="text-muted fw-bold mb-4">120 poin</p>
+                                <button class="btn btn-custom rounded-pill px-4 fw-bold" 
+                                    onclick="openDetailModal('Limited Special Tumbler', 120, 'Assets/tumblr.gif')">
+                                    CLAIM
+                                </button>
+                            </div>
+                            <div class="reward-img-wrapper">
+                                <img src="Assets/tumblr.gif" alt="Tumbler" class="img-fluid" style="height: 15em;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row g-4">
+                            
+                            <div class="col-6">
+                                <div class="ticket-card shadow-sm">
+                                    <div class="ticket-body p-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-white text-success border border-success mb-1">Discount</span>
+                                            <h6 class="fw-bold m-0">s.d 30rb</h6>
+                                        </div>
+                                        <h2 class="fw-bold text-green-primary m-0">20%</h2>
+                                    </div>
+                                    
+                                    <div class="ticket-divider"></div>
+
+                                    <div class="ticket-footer p-2 px-3 d-flex justify-content-between align-items-center">
+                                        <small class="text-muted" style="font-size: 0.65rem;">
+                                            <i class="bi bi-calendar-event"></i> s.d 31 Des 2025
+                                        </small>
+                                        <button class="btn btn-custom btn-sm rounded-pill px-3 py-0" style="font-size: 0.7rem;"
+                                            onclick="openDetailModal('Voucher Diskon 20%', 25, 'Assets/voucher.gif')">
+                                            CLAIM
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="ticket-card shadow-sm">
+                                    <div class="ticket-body p-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-white text-success border border-success mb-1">Discount</span>
+                                            <h6 class="fw-bold m-0">s.d 50rb</h6>
+                                        </div>
+                                        <h2 class="fw-bold text-green-primary m-0">25%</h2>
+                                    </div>
+                                    <div class="ticket-divider"></div>
+                                    <div class="ticket-footer p-2 px-3 d-flex justify-content-between align-items-center">
+                                        <small class="text-muted" style="font-size: 0.65rem;">
+                                            <i class="bi bi-calendar-event"></i> s.d 31 Des 2025
+                                        </small>
+                                        <button class="btn btn-custom btn-sm rounded-pill px-3 py-0" style="font-size: 0.7rem;"
+                                            onclick="openDetailModal('Voucher Diskon 25%', 30, 'Assets/voucher.gif')">
+                                            CLAIM
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="ticket-card shadow-sm">
+                                    <div class="ticket-body p-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-white text-success border border-success mb-1">Discount</span>
+                                            <h6 class="fw-bold m-0">s.d 40rb</h6>
+                                        </div>
+                                        <h2 class="fw-bold text-green-primary m-0">25%</h2>
+                                    </div>
+                                    <div class="ticket-divider"></div>
+                                    <div class="ticket-footer p-2 px-3 d-flex justify-content-between align-items-center">
+                                        <small class="text-muted" style="font-size: 0.65rem;">
+                                            <i class="bi bi-calendar-event"></i> s.d 31 Des 2025
+                                        </small>
+                                        <button class="btn btn-custom btn-sm rounded-pill px-3 py-0" style="font-size: 0.7rem;"
+                                            onclick="openDetailModal('Voucher Diskon 25%', 25, 'Assets/voucher.gif')">
+                                            CLAIM
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="ticket-card shadow-sm">
+                                    <div class="ticket-body p-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="badge bg-white text-success border border-success mb-1">Discount</span>
+                                            <h6 class="fw-bold m-0">s.d 20rb</h6>
+                                        </div>
+                                        <h2 class="fw-bold text-green-primary m-0">15%</h2>
+                                    </div>
+                                    <div class="ticket-divider"></div>
+                                    <div class="ticket-footer p-2 px-3 d-flex justify-content-between align-items-center">
+                                        <small class="text-muted" style="font-size: 0.65rem;">
+                                            <i class="bi bi-calendar-event"></i> s.d 31 Des 2025
+                                        </small>
+                                        <button class="btn btn-custom btn-sm rounded-pill px-3 py-0" style="font-size: 0.7rem;"
+                                            onclick="openDetailModal('Voucher Diskon 25%', 15, 'Assets/voucher.gif')">
+                                            CLAIM
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+<footer class="pt-5 pb-3 mt-2">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Assets/Icon GreenUp.png" alt="Logo" width="40" class="me-2" style="filter: brightness(0) invert(1);"> 
+                        <h4 class="fw-bold mb-0">GreenUp</h4>
+                    </div>
+                    <p class="small text-white-50">
+                        Platform digital untuk pengelolaan sampah yang lebih baik. Hubungkan dirimu dengan bank sampah terdekat dan buat perubahan nyata hari ini.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Menu</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="donation.html">Donation</a></li>
+                        <li class="mb-2"><a href="#">Our Partner</a></li>
+                        <li class="mb-2"><a href="#">Education</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms & Condition</a></li>
+                        <li class="mb-2"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Kantor Kami</h5>
+                    <p class="small text-white-50 mb-2">
+                        Jl. Dewberry, Kec. Heartlands<br>
+                        New Hanover, Montana 13220
+                    </p>
+                    <p class="small text-white-50 mb-3">
+                        Email: hello@greenup.id<br>
+                        Phone: +62 812 3456 7890
+                    </p>
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-twitter-x fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2024 GreenUp Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed with 💚 in Tangerang bagian Montana</p>
+                </div>
+            </div>
+        </div>
+</footer>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> <div class="modal-content rounded-4 border-0 p-4">
+            <div class="modal-body">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-7">
+                        <h2 class="fw-bold text-dark mb-1" id="detailItemName">Item Name</h2>
+                        <h4 class="fw-bold text-muted mb-4"><span id="detailItemPrice">0</span> poin</h4>
+                        
+                        <hr class="my-4">
+
+                        <h6 class="fw-bold mb-2">Terms and Condition</h6>
+                        <ol class="text-muted small ps-3 mb-4" style="line-height: 1.6;">
+                            <li>Merchandise can only be purchased using points.</li>
+                            <li>Merchandise must be collected in person at the selected location.</li>
+                            <li>Orders that have been placed cannot be canceled.</li>
+                            <li>Terms and conditions are subject to change at any time.</li>
+                        </ol>
+
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-outline-custom w-50 py-2 rounded-pill fw-bold" data-bs-dismiss="modal">
+                                CANCEL
+                            </button>
+                            <button class="btn btn-custom w-50 py-2 rounded-pill fw-bold" onclick="confirmClaim()">
+                                CLAIM NOW
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 text-center">
+                        <img id="detailItemImg" src="" alt="Reward" class="img-fluid" style="max-height: 300px;">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 p-4 text-center">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h3 class="fw-bold text-green-primary mb-2">Yeay! Berhasil!</h3>
+                    <p class="text-muted mb-4">
+                        Kamu berhasil menukarkan <span id="successItemName" class="fw-bold text-dark">Item</span>.
+                        Informasi selanjutnya akan dikirim ke emailmu!
+                    </p>
+                    <button type="button" class="btn btn-custom w-100 py-2 rounded-pill" data-bs-dismiss="modal">
+                        Oke, Mantap!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 p-4 text-center">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <i class="bi bi-x-circle-fill text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h3 class="fw-bold text-danger mb-2">Opps! Poin Kurang</h3>
+                    <p class="text-muted mb-4">
+                        Poin kamu belum cukup untuk menukar item ini. Yuk donasi sampah lagi buat nambah poin!
+                    </p>
+                    <button type="button" class="btn btn-outline-secondary w-100 py-2 rounded-pill" data-bs-dismiss="modal">
+                        Kembali
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

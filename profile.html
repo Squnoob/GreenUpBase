@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - GreenUp</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="donation.html">Donation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="partner.html">Our Partner</a></li>
+                        <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reward.html">Reward</a></li>
+                    </ul>
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon active" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5">
+        <div class="container" >
+            
+            <h4 class="fw-bold mb-4 text-dark">View Profile</h4>
+
+            <div class="d-flex align-items-center mb-5"  style="color: var(--green-secondary);">         
+                <div class="position-relative">
+                    <div id="profilePic" class="profile-avatar me-4 d-flex align-items-center justify-content-center bg-secondary bg-opacity-25 text-secondary overflow-hidden">
+                        <i class="bi bi-person-fill" style="font-size: 3rem;"></i>
+                    </div>
+                    
+                    <label for="fileInput" class="btn-upload-cam shadow-sm">
+                        <i class="bi bi-camera-fill"></i>
+                    </label>
+                    
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+                
+                <div>
+                    <h3 class="fw-bold mb-1" id="headerProfileName">Guest User</h3>
+                    <p class="text-muted mb-2">Lv 1. Trasher</p>
+                    <div class="badge-status-active px-3 py-1 d-inline-flex align-items-center">
+                        <span class="dot-green me-2"></span> Active
+                    </div>
+                </div>
+                <div class="d-flex gap-3 ms-auto text-center">
+                    
+                    <div class="px-4 py-2 rounded-4 shadow-sm text-white" style="background-color: var(--green-primary);">
+                        <p class="small mb-0 fw-bold opacity-75">Green Points</p>
+                        <h4 class="fw-bold m-0">
+                            <span id="totalPointsDisplay">0</span>
+                        </h4>
+                    </div>
+
+                    <div class="px-4 py-2 rounded-4 shadow-sm text-white" style="background-color: var(--green-primary);">
+                        <p class="small mb-0 fw-bold opacity-75">Total Recycled</p>
+                        <h4 class="fw-bold m-0">
+                            <i class="bi bi-recycle me-1"></i> <span id="totalTrashDisplay">0</span> <span class="fs-6">Kg</span>
+                        </h4>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <div class="row" >
+                
+               <div class="col-lg-8 mb-4">
+                    <div class="card profile-card p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold m-0">Profile Details</h5>
+                            
+                            <div>
+                                <button id="editProfileBtn" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                                    <i class="bi bi-pencil me-1"></i> Edit
+                                </button>
+                                
+                                <button id="saveProfileBtn" class="btn btn-success btn-sm rounded-pill px-3 d-none">
+                                    <i class="bi bi-check-lg me-1"></i> Save
+                                </button>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label fw-bold text-muted">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="inputName" readonly class="form-control-plaintext fw-bold text-dark" value="-">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label fw-bold text-muted">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="inputEmail" readonly class="form-control-plaintext text-dark" value="-">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label fw-bold text-muted">Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="inputPhone" readonly class="form-control-plaintext text-dark" value="-">
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="mt-auto pt-4 border-top">
+                            <button id="logoutBtn" class="btn btn-danger btn-sm rounded-pill px-4">
+                                <i class="bi bi-box-arrow-right me-2"></i> Log Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card profile-card p-4 h-100 text-center"  style="color: var(--green-secondary);">
+                        <h6 class="fw-bold mb-4"  style="color: var(--green-primary);">Complete your profile</h6>
+                        
+                        <div id="progressChart" class="donut-chart mb-4 mx-auto">
+                            <div class="donut-center">
+                                <span id="progressText" class="fw-bold fs-4 text-green-primary">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="text-start px-3">
+                            
+                            <div class="d-flex align-items-center mb-2 text-green-primary fw-bold small" id="itemAccount">
+                                <i class="bi bi-check-lg me-2"></i> Setup account
+                            </div>
+
+                            <div class="d-flex align-items-center mb-2 text-muted small" id="itemDetails">
+                                <i class="bi bi-x-circle me-2"></i> Profile details
+                            </div>
+
+                            <div class="d-flex align-items-center mb-2 text-muted small" id="itemPhoto">
+                                <i class="bi bi-x-circle me-2"></i> Upload your photo
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+<footer class="pt-5 pb-3 mt-2">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Assets/Icon GreenUp.png" alt="Logo" width="40" class="me-2" style="filter: brightness(0) invert(1);"> 
+                        <h4 class="fw-bold mb-0">GreenUp</h4>
+                    </div>
+                    <p class="small text-white-50">
+                        Platform digital untuk pengelolaan sampah yang lebih baik. Hubungkan dirimu dengan bank sampah terdekat dan buat perubahan nyata hari ini.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Menu</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="donation.html">Donation</a></li>
+                        <li class="mb-2"><a href="#">Our Partner</a></li>
+                        <li class="mb-2"><a href="#">Education</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms & Condition</a></li>
+                        <li class="mb-2"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Kantor Kami</h5>
+                    <p class="small text-white-50 mb-2">
+                        Jl. Dewberry, Kec. Heartlands<br>
+                        New Hanover, Montana 13220
+                    </p>
+                    <p class="small text-white-50 mb-3">
+                        Email: hello@greenup.id<br>
+                        Phone: +62 812 3456 7890
+                    </p>
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-twitter-x fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2024 GreenUp Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed with 💚 in Tangerang bagian Montana</p>
+                </div>
+            </div>
+        </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

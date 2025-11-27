@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - GreenUp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg py-0 navbar-light bg-white shadow-sm">
+            <div class="container-fluid px-4">
+                
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="Assets/Icon GreenUp.png" alt="Logo GreenUp" class="logo-img me-2">
+                    <span class="logo-text">GreenUp</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="donation.html">Donation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="partner.html">Our Partner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="education.html">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reward.html">Reward</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" id="navRightAction">
+                        <li class="nav-item">
+                            <a class="nav-link profile-icon" href="profile.html">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-5 education-section">
+        <div class="container">
+            
+            <article class="article-card row align-items-center">
+                <div class="col-md-8 col-lg-9 order-2 order-md-1">
+                    <a href="https://waste4change.com/blog/konsep-prinsip-3r-reduce-reuse-recycle/" target="_blank" class="text-decoration-none">
+                        <h4 class="article-title mb-2">Mengenal 3R (Reduce, Reuse, Recycle) Menurut Para Ahli</h4>
+                    </a>
+                    <p class="article-desc mb-3">
+                        Konsep 3R adalah urutan langkah untuk mengelola sampah dengan bijak. Pelajari bagaimana menerapkannya dalam kehidupan sehari-hari untuk mengurangi timbunan sampah di TPA.
+                    </p>
+                    <div class="d-flex align-items-center text-muted small">
+                        <i class="bi bi-newspaper me-2"></i> Waste4Change &bull; Edukasi
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 order-1 order-md-2 mb-3 mb-md-0 text-end">
+                    <a href="https://waste4change.com/blog/3r-reduce-reuse-recycle-menurut-para-ahli/" target="_blank">
+                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=400&auto=format&fit=crop" 
+                             alt="Ilustrasi 3R" class="article-img">
+                    </a>
+                </div>
+            </article>
+
+            <article class="article-card row align-items-center">
+                <div class="col-md-8 col-lg-9 order-2 order-md-1">
+                    <a href="https://plasticsmartcities.wwf.id/feature/article/sampah-plastik-ancaman-bagi-lingkungan-dan-kehidupan" target="_blank" class="text-decoration-none">
+                        <h4 class="article-title mb-2">Sampah Plastik Ancaman bagi Lingkungan dan Kehidupan</h4>
+                    </a>
+                    <p class="article-desc mb-3">
+                        Plastik telah menjadi bagian tak terpisahkan dari kehidupan modern, berkat sifatnya yang serbaguna dan murah. Namun, di balik kenyamanan yang ditawarkannya, plastik membawa ancaman serius bagi lingkungan dan kehidupan di bumi.
+                    </p>
+                    <div class="d-flex align-items-center text-muted small">
+                        <i class="bi bi-newspaper me-2"></i> IndonesiaBaik.id &bull; Lingkungan
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 order-1 order-md-2 mb-3 mb-md-0 text-end">
+                    <a href="https://indonesiabaik.id/infografis/bahaya-sampah-plastik-bagi-lingkungan" target="_blank">
+                        <img src="https://th.bing.com/th/id/OIP.bSEp8TGYHVMWCZc2KCcOkAHaEK?w=275&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" 
+                             alt="Sampah Plastik" class="article-img">
+                    </a>
+                </div>
+            </article>
+
+            <article class="article-card row align-items-center">
+                <div class="col-md-8 col-lg-9 order-2 order-md-1">
+                    <a href="https://www.kompas.com/homey/read/2023/09/17/192046776/mudah-cara-membuat-pupuk-dari-sampah-dapur" target="_blank" class="text-decoration-none">
+                        <h4 class="article-title mb-2">Cara Membuat Pupuk Kompos dari Sampah Dapur</h4>
+                    </a>
+                    <p class="article-desc mb-3">
+                        Jangan buang sisa sayuranmu! Limbah organik rumah tangga bisa disulap menjadi "emas hitam" penyubur tanaman. Berikut panduan mudah membuatnya di rumah.
+                    </p>
+                    <div class="d-flex align-items-center text-muted small">
+                        <i class="bi bi-newspaper me-2"></i> Kompas.com &bull; Tips
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 order-1 order-md-2 mb-3 mb-md-0 text-end">
+                    <a href="https://www.kompas.com/homey/read/2023/09/17/192046776/mudah-cara-membuat-pupuk-dari-sampah-dapur" target="_blank">
+                        <img src="https://asset.kompas.com/crops/i_Lo1SHsgIgmCRbEVCzc1p2RFPk=/32x0:1000x645/1200x800/data/photo/2023/05/10/645b3d2ab0580.jpg" 
+                             alt="Kompos" class="article-img">
+                    </a>
+                </div>
+            </article>
+
+            <article class="article-card row align-items-center">
+                <div class="col-md-8 col-lg-9 order-2 order-md-1">
+                    <a href="https://sipsn.menlhk.go.id/sipsn/" target="_blank" class="text-decoration-none">
+                        <h4 class="article-title mb-2">Mengenal Sistem Bank Sampah di Indonesia</h4>
+                    </a>
+                    <p class="article-desc mb-3">
+                        Bank Sampah adalah strategi untuk membangun kepedulian masyarakat agar dapat 'berkawan' dengan sampah untuk mendapatkan manfaat ekonomi langsung dari sampah.
+                    </p>
+                    <div class="d-flex align-items-center text-muted small">
+                        <i class="bi bi-newspaper me-2"></i> SIPSN Menlhk &bull; Program
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 order-1 order-md-2 mb-3 mb-md-0 text-end">
+                    <a href="https://sipsn.menlhk.go.id/sipsn/" target="_blank">
+                        <img src="https://th.bing.com/th/id/OIP.6PSVelw27NZGzBGvZtZIVgHaFd?w=238&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" 
+                             alt="Bank Sampah" class="article-img">
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="pt-5 pb-3 mt-2">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="Assets/Icon GreenUp.png" alt="Logo" width="40" class="me-2" style="filter: brightness(0) invert(1);"> 
+                        <h4 class="fw-bold mb-0">GreenUp</h4>
+                    </div>
+                    <p class="small text-white-50">
+                        Platform digital untuk pengelolaan sampah yang lebih baik. Hubungkan dirimu dengan bank sampah terdekat dan buat perubahan nyata hari ini.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Menu</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="donation.html">Donation</a></li>
+                        <li class="mb-2"><a href="#">Our Partner</a></li>
+                        <li class="mb-2"><a href="#">Education</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="fw-bold mb-3">Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms & Condition</a></li>
+                        <li class="mb-2"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Kantor Kami</h5>
+                    <p class="small text-white-50 mb-2">
+                        Jl. Dewberry, Kec. Heartlands<br>
+                        New Hanover, Montana 13220
+                    </p>
+                    <p class="small text-white-50 mb-3">
+                        Email: hello@greenup.id<br>
+                        Phone: +62 812 3456 7890
+                    </p>
+                    
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="bi bi-twitter-x fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="footer-divider my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2024 GreenUp Indonesia. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed with 💚 in Tangerang bagian Montana</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
