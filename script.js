@@ -106,7 +106,17 @@ if (googleBtn) {
                 }
                 Swal.fire({ icon: 'success', title: 'Login Berhasil!', showConfirmButton: false, timer: 1500 }).then(() => window.location.href = 'index.html');
             })
-            .catch((error) => Swal.fire('Error', error.message, 'error'));
+           .catch((error) => {
+                // Cek apakah errornya karena user menutup popup?
+                if (error.code === 'auth/popup-closed-by-user') {
+                    console.log("Login Google dibatalkan user.");
+                    // Jangan lakukan apa-apa (Silent)
+                } else {
+                    // Kalau error lain (misal jaringan), baru munculkan alert
+                    console.error(error);
+                    Swal.fire('Gagal', error.message, 'error');
+                }
+            });
     });
 }
 
